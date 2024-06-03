@@ -26,7 +26,6 @@ function analyze_ecg(ecg_file, intervals)
         end_idx = round(end_time * fs);
 
         interval_signal = signal(start_idx:end_idx);
-        %disp(interval_signal);
 
         % Detect R-peaks
         r_peaks = detect_r_peaks(interval_signal, fs);
