@@ -14,7 +14,7 @@ function display_results(intervals, heart_rates, hrvs_sdnn, hrvs_sdsd)
             heart_rates(i, 1), heart_rates(i, 2), heart_rates(i, 3), hrvs_sdnn(i), hrvs_sdsd(i));
     end
 
-    if size(intervals, 1) > 7
+    if length(intervals) >= 7
         mean_hr = mean(heart_rates(:, 1), 'omitnan');
         std_hr = std(heart_rates(:, 1), 'omitnan');
         abs_min_hr = min(heart_rates(:, 2), [], 'omitnan');
