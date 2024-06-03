@@ -46,6 +46,30 @@ function analyze_ecg(ecg_file, intervals)
         hrvs_sdsd = [hrvs_sdsd; sdsd];
     end
 
-    % Display results
+    % Display results for each interval
     display_results(intervals, heart_rates, hrvs_sdnn, hrvs_sdsd);
+
+    %display(length(intervals));
+    % If more than 7 intervals, calculate and display summary statistics
+    if length(intervals) >= 7
+        avg_hr = mean(heart_rates(:, 1), 'omitnan');
+        std_hr = std(heart_rates(:, 1), 'omitnan');
+        min_hr = min(heart_rates(:, 2), [], 'omitnan');
+        max_hr = max(heart_rates(:, 3), [], 'omitnan');
+
+        avg_sdnn = mean(hrvs_sdnn, 'omitnan');
+        std_sdnn = std(hrvs_sdnn, 'omitnan');
+        avg_sdsd = mean(hrvs_sdsd, 'omitnan');
+        std_sdsd = std(hrvs_sdsd, 'omitnan');
+
+        fprintf('Summary Statistics for HR and HRV over all intervals:\n');
+        fprintf('Average HR: %.2f bpm\n', avg_hr);
+        fprintf('Standard Deviation of HR: %.2f bpm\n', std_hr);
+        fprintf('Minimum HR: %.2f bpm\n', min_hr);
+        fprintf('Maximum HR: %.2f bpm\n', max_hr);
+        fprintf('Average SDNN: %.2f ms\n', avg_sdnn);
+        fprintf('Standard Deviation of SDNN: %.2f ms\n', std_sdnn);
+        fprintf('Average SDSD: %.2f ms\n', avg_sdsd);
+        fprintf('Standard Deviation of SDSD: %.2f ms\n', std_sdsd);
+    end
 end
